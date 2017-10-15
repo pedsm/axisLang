@@ -1,0 +1,19 @@
+{
+  "name": "axislang",
+  "version": "1.0.0",
+  "description": "The official Axis Parser",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pedsm/axisLang.git"
+  },
+  "author": "Pedro Mendonca",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pedsm/axisLang/issues"
+  },
+  "homepage": "https://github.com/pedsm/axisLang#readme"
+}
