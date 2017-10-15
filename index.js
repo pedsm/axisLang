@@ -1,7 +1,3 @@
-const rp = require('request-promise')
-
-log = a => {}
-
 class Axis {
     constructor() {
         this.items = [];
@@ -73,17 +69,4 @@ class Axis {
 }
 
 module.exports = Axis
-
-parser = new Axis()
-axisCode = 'hits -> hits -> _source -> version'
-url = 'http://localhost:7777/rand'
-
-// console.log(parser.tokenize(axisCode));
-
-rp(url)
-    .then((response) => {
-        // parser.access(Axis.tokenize(axisCode), JSON.parse(response))
-        // console.log(parser.items)
-        console.log(parser.parse(axisCode, JSON.parse(response)))
-    })
-    .catch(e => console.error(e))
+let log = a => {}
