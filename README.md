@@ -1,6 +1,6 @@
 # Axis Lang
 
-![logo](logo/axisLogo.svg)
+![logo](logo/axisLogo.png)
 A data-driven syntax
 
 ## What it does
