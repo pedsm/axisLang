@@ -25,7 +25,7 @@ Simply create an Axis parser instance and use the parse function, with an expres
 
 The following code will return `[JSON API paints my bikeshed!]`
 ```javascript
-{
+let data = JSON.parse(`{
   "data": [{
     "type": "articles",
     "id": "1",
@@ -52,5 +52,10 @@ The following code will return `[JSON API paints my bikeshed!]`
       }
     }
   ]
-}
+}`)
+const axis = require('axislang')
+let axis = new axis
+let expression = 'data -> attributes -> title'
+let titles = axis.parse(expression, data)
+console.log(title)
 ```
