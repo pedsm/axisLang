@@ -63,6 +63,7 @@ class Axis {
         }
     }
     parse(expression, data) {
+        this.items = []
         this.access(Axis.tokenize(expression), data)
         return this.items
     }
