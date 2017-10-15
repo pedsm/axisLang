@@ -53,9 +53,9 @@ let data = JSON.parse(`{
     }
   ]
 }`)
-const axis = require('axislang')
-let axis = new axis
+const axislang = require('axislang')
+let axis = new axislang()
 let expression = 'data -> attributes -> title'
 let titles = axis.parse(expression, data)
-console.log(title)
+console.log(titles)
 ```
