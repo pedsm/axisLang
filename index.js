@@ -21,7 +21,7 @@ class Axis {
             return
         }
         for(let i = 0; i < tokens.length; i++) {
-            log(`checking for ${tokens[i]} in ${JSON.stringify(current)}\n\n`)
+            log(`checking for ${tokens[i]} in ${}\n\n`)
             if(tokens.length === 0 ) {
                 log(`Found new entry total = ${this.items.length}`)
                 this.items.push(current)
