@@ -4,7 +4,7 @@
   "description": "The official Axis Parser",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha -r ts-node/register src/test.ts"
   },
   "repository": {
     "type": "git",
@@ -16,12 +16,15 @@
     "url": "https://github.com/pedsm/axisLang/issues"
   },
   "homepage": "https://github.com/pedsm/axisLang#readme",
-  "dependencies": {},
+  "dependencies": {
+    "ts-loader": "^3.2.0",
+    "ts-node": "^4.1.0"
+  },
   "devDependencies": {
+    "@types/mocha": "^2.2.45",
     "mocha": "^4.0.1",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",
-    "typescript": "^2.6.2",
-    "webpack": "^3.10.0"
+    "typescript": "^2.6.2"
   }
 }

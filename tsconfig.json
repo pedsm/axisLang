@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "declaration": true,
+    "sourceMap": true,
+    "outDir": "./bin",
+    "rootDir": "./src",
+    "removeComments": true,
+    "strict": true,
+  },
+  "files": [
+    "src/index.ts"
+  ]
+}
