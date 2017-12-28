@@ -9,6 +9,7 @@
         "no-console":false,
         "interface-name":false,
         "eofline":false,
+        "no-angle-bracket-type-assertion": false,
         "member-access":false
     },
     "rulesDirectory": []

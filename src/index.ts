@@ -72,9 +72,36 @@
 // module.exports = Axis
 // let log = a => {}
 
-export default function access(axisCode: string, data: string | object | any[] | undefined | null) {
-    const tokens = tokenize(axisCode)
+export default function access(
+    axisCode: string | Token[],
+    dataInput: string | object | any[] | undefined | null): any[] | Error {
+    const tokens = typeof(axisCode) === "string" ? tokenize(axisCode) : axisCode
 
+    // Checks for undefined or null
+    if (dataInput == null) {
+        debugger
+        return new Error("Data passed is invalid")
+    }
+    // Parse or not the data
+    const data: object | any[] = typeof(dataInput) === "string" ? JSON.parse(dataInput) : dataInput
+    const token = tokens[0]
+
+    console.log(`Current token ${token.value}`)
+    console.log(`Current dataPoint ${JSON.stringify(data)}`)
+
+    if (Array.isArray(data)) {
+        if (tokens.length === 1) {
+            return (<any> data)[token.value]
+        }
+        debugger
+        return data.map((a) => access(tokens, a))
+    }
+    // This is a hack because typescript does not like the dictonary syntax
+    const curPos = (<any> data)[token.value] 
+    if (tokens.length === 1) {
+        return curPos
+    }
+    return access(tokens.splice(1), curPos)
 }
 
 export interface Token {
@@ -90,3 +117,19 @@ export function tokenize(axisCode: string): Token[] {
         .split("->")
         .map((a, i) => ({ value: a, index: i }))
 }
+
+// const test = access("data -> names", {
+//     data: {
+//         names: [
+//             "Hello",
+//             "Hello1",
+//             "Hello2",
+//             "Hello3",
+//         ],
+//     },
+// })
+console.log(access("data -> name", { data: { name: "One" } }))
+console.log(access("data -> name", [{ data: { name: "One" } }]))
+console.log(access("data -> name", { data: [{ name: "One" }] }))
+// console.log(access("data -> name", [{ data: [{ name: "One" }] }]))
+// console.log(access("data -> name", [{data: [{name: ["One"]}]}]))
