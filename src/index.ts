@@ -89,15 +89,22 @@ export default function access(
     console.log(`Current token ${token.value}`)
     console.log(`Current dataPoint ${JSON.stringify(data)}`)
 
+    // Check if the whole dataset is an array
     if (Array.isArray(data)) {
         if (tokens.length === 1) {
             return (<any> data)[token.value]
         }
-        debugger
         return data.map((a) => access(tokens, a))
     }
-    // This is a hack because typescript does not like the dictonary syntax
     const curPos = (<any> data)[token.value] 
+    // Check if the next point to be accesed is an array
+    if (Array.isArray(curPos)){
+        if (tokens.length === 1) {
+            return curPos
+        }
+        return curPos.map((a) => access(tokens.splice(1), a))
+    }
+    // This is a hack because typescript does not like the dictonary syntax
     if (tokens.length === 1) {
         return curPos
     }
@@ -131,5 +138,5 @@ export function tokenize(axisCode: string): Token[] {
 console.log(access("data -> name", { data: { name: "One" } }))
 console.log(access("data -> name", [{ data: { name: "One" } }]))
 console.log(access("data -> name", { data: [{ name: "One" }] }))
-// console.log(access("data -> name", [{ data: [{ name: "One" }] }]))
-// console.log(access("data -> name", [{data: [{name: ["One"]}]}]))
+console.log(access("data -> name", [{ data: [{ name: "One" }] }]))
+console.log(access("data -> name", [{data: [{name: ["One"]}]}]))
