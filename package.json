@@ -16,9 +16,12 @@
     "url": "https://github.com/pedsm/axisLang/issues"
   },
   "homepage": "https://github.com/pedsm/axisLang#readme",
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "mocha": "^4.0.1",
     "request": "^2.83.0",
-    "request-promise": "^4.2.2"
+    "request-promise": "^4.2.2",
+    "typescript": "^2.6.2",
+    "webpack": "^3.10.0"
   }
 }
