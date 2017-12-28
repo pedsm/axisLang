@@ -7,4 +7,8 @@ describe('Tokenize', () => {
         const code = "axis -> code -> test"
         assert.equal(axis.tokenize(code).length, 3)
     })
+    it('token 4 should be an index token', () => {
+        const code = "axis -> code -> test -> [5]"
+        assert.equal(axis.tokenize(code)[3].value, '[5]')
+    })
 })
