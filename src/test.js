@@ -13,32 +13,32 @@ describe('Tokenize', () => {
     })
 })
 
-describe('Access depth', () =>  {
-    it("Strings should not have depth", () => {
-       const code = "data -> name -> [1]" 
-       assert.equal(axis.isDeep("Hello"), false)
-    })
-    it("Numbers should not have depth", () => {
-       const code = "data -> name -> [1]" 
-       assert.equal(axis.isDeep(213141), false)
-    })
-    it("Booleans should not have depth", () => {
-       const code = "data -> name -> [1]" 
-       assert.equal(axis.isDeep(true), false)
-    })
-    it("Objects should have depth", () => {
-       const code = "data -> name -> [1]" 
-       assert.equal(axis.isDeep({hello: "goodbye"}), true)
-    })
-    it("Simple arrays should not have depth", () => {
-       const code = "data -> name -> [1]" 
-       assert.equal(axis.isDeep([1,2,3]), false)
-    })
-    it("Complex arrays should have depth", () => {
-       const code = "data -> name -> [1]" 
-       assert.equal(axis.isDeep([{}, {}]), true)
-    })
-})
+// describe('Access depth', () =>  {
+//     it("Strings should not have depth", () => {
+//        const code = "data -> name -> [1]" 
+//        assert.equal(axis.isDeep("Hello"), false)
+//     })
+//     it("Numbers should not have depth", () => {
+//        const code = "data -> name -> [1]" 
+//        assert.equal(axis.isDeep(213141), false)
+//     })
+//     it("Booleans should not have depth", () => {
+//        const code = "data -> name -> [1]" 
+//        assert.equal(axis.isDeep(true), false)
+//     })
+//     it("Objects should have depth", () => {
+//        const code = "data -> name -> [1]" 
+//        assert.equal(axis.isDeep({hello: "goodbye"}), true)
+//     })
+//     it("Simple arrays should not have depth", () => {
+//        const code = "data -> name -> [1]" 
+//        assert.equal(axis.isDeep([1,2,3]), false)
+//     })
+//     it("Complex arrays should have depth", () => {
+//        const code = "data -> name -> [1]" 
+//        assert.equal(axis.isDeep([{}, {}]), true)
+//     })
+// })
 
 describe('Spec examples', () => {
     const specTests = [
