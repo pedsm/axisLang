@@ -2,6 +2,16 @@
 
 Language spec
 
+## Axis code fundamentals
+
+1. Return type is constant
+    - Axis will always return an Array regardless if there is one item or many, this enforces users that code with Axis to cater for multiple outputs cases which automatically works for a single output case
+2. Everything that can be infered will be infered
+    - A user writing Axis code must never require to specify anything that can be assumed, no parameter types should be defined as these can be defined later on
+3. Axis strives for ambiguity
+    - An axis expression should ideally work for many types of inputs 
+    - For example a JSON API that returns a JSON object or multiple JSON objects should ideally be able to be handled by the same axis expression
+
 ## Axis access method
 
 1. Checks for `undefined` `null` and proprely outuputs error
@@ -86,3 +96,5 @@ data -> name
     }
 ]
 ```
+
+All of these examples should return `["One"]`.
