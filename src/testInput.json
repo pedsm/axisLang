@@ -1,0 +1,227 @@
+[
+  {
+    "_id": "5a466e5fd61abf34fe208d19",
+    "index": 0,
+    "guid": "eb8135f5-de6a-43ed-808a-5055a7665853",
+    "isActive": true,
+    "balance": "$3,551.59",
+    "picture": "http://placehold.it/32x32",
+    "age": 27,
+    "eyeColor": "green",
+    "name": "Deleon Dalton",
+    "gender": "male",
+    "company": "GEEKKO",
+    "email": "deleondalton@geekko.com",
+    "phone": "+1 (961) 438-3642",
+    "address": "467 Thames Street, Savage, Maine, 7399",
+    "about": "Id sunt excepteur aliquip ex reprehenderit sit tempor esse laboris nisi. Occaecat duis ullamco voluptate minim nisi consequat pariatur ullamco voluptate minim elit. Ut proident aliquip consequat non proident.\r\n",
+    "registered": "2017-06-02T01:37:57 -01:00",
+    "latitude": 66.297468,
+    "longitude": 76.773225,
+    "tags": [
+      "elit",
+      "consectetur",
+      "ad",
+      "non",
+      "occaecat",
+      "velit",
+      "ut"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Britney Hensley"
+      },
+      {
+        "id": 1,
+        "name": "Annmarie Ryan"
+      },
+      {
+        "id": 2,
+        "name": "Hess Decker"
+      }
+    ],
+    "greeting": "Hello, Deleon Dalton! You have 10 unread messages.",
+    "favoriteFruit": "apple"
+  },
+  {
+    "_id": "5a466e5fb5ceba765bb686be",
+    "index": 1,
+    "guid": "210e5058-72ae-43c7-b731-6b8d3c50eecd",
+    "isActive": false,
+    "balance": "$1,292.47",
+    "picture": "http://placehold.it/32x32",
+    "age": 28,
+    "eyeColor": "brown",
+    "name": "Compton Carr",
+    "gender": "male",
+    "company": "PROTODYNE",
+    "email": "comptoncarr@protodyne.com",
+    "phone": "+1 (982) 457-3700",
+    "address": "419 Lester Court, Bath, Arkansas, 403",
+    "about": "Veniam officia excepteur duis proident pariatur occaecat aliquip est. Dolore excepteur anim elit ullamco magna ipsum. Velit proident est velit cupidatat. Non sit culpa adipisicing velit quis amet. Nostrud elit voluptate incididunt incididunt magna anim est labore cupidatat consectetur eu dolore excepteur laboris. Incididunt elit cupidatat consequat proident Lorem. Reprehenderit cillum veniam do et aliqua magna id.\r\n",
+    "registered": "2015-03-18T02:56:58 -00:00",
+    "latitude": -26.804657,
+    "longitude": -75.505847,
+    "tags": [
+      "incididunt",
+      "fugiat",
+      "laborum",
+      "excepteur",
+      "est",
+      "magna",
+      "deserunt"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Bolton Shaffer"
+      },
+      {
+        "id": 1,
+        "name": "Ruth Caldwell"
+      },
+      {
+        "id": 2,
+        "name": "Medina Kline"
+      }
+    ],
+    "greeting": "Hello, Compton Carr! You have 4 unread messages.",
+    "favoriteFruit": "apple"
+  },
+  {
+    "_id": "5a466e5f4835689a3979d954",
+    "index": 2,
+    "guid": "f95e65bf-bdda-4f46-b9aa-0f0669f5135a",
+    "isActive": true,
+    "balance": "$1,249.56",
+    "picture": "http://placehold.it/32x32",
+    "age": 38,
+    "eyeColor": "green",
+    "name": "Pugh Watson",
+    "gender": "male",
+    "company": "NEOCENT",
+    "email": "pughwatson@neocent.com",
+    "phone": "+1 (979) 507-2833",
+    "address": "985 Manhattan Avenue, Frierson, Vermont, 2078",
+    "about": "Ea Lorem mollit in cupidatat. Qui nostrud consequat ex aliquip amet consequat magna laborum velit aliqua minim aute in laborum. Fugiat anim in enim ea incididunt minim sint. Et est eiusmod deserunt duis nostrud non ipsum officia. Aliqua eiusmod do quis qui nulla consectetur et minim exercitation aute dolore. Sit ullamco excepteur ex cupidatat dolor proident officia ad deserunt ullamco labore id amet.\r\n",
+    "registered": "2016-02-12T11:13:09 -00:00",
+    "latitude": -82.785513,
+    "longitude": -154.99561,
+    "tags": [
+      "do",
+      "reprehenderit",
+      "ad",
+      "adipisicing",
+      "officia",
+      "aute",
+      "pariatur"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Tami Duncan"
+      },
+      {
+        "id": 1,
+        "name": "Lawrence Hooper"
+      },
+      {
+        "id": 2,
+        "name": "Esperanza Hickman"
+      }
+    ],
+    "greeting": "Hello, Pugh Watson! You have 4 unread messages.",
+    "favoriteFruit": "apple"
+  },
+  {
+    "_id": "5a466e5f234ad1c4572e17af",
+    "index": 3,
+    "guid": "66553568-dbbe-4852-b7e6-0dffdcdf3ae9",
+    "isActive": true,
+    "balance": "$1,130.76",
+    "picture": "http://placehold.it/32x32",
+    "age": 24,
+    "eyeColor": "brown",
+    "name": "John Terrell",
+    "gender": "female",
+    "company": "BUZZOPIA",
+    "email": "johnterrell@buzzopia.com",
+    "phone": "+1 (920) 549-2448",
+    "address": "405 Elmwood Avenue, Byrnedale, Missouri, 7890",
+    "about": "Id cupidatat Lorem consequat exercitation mollit adipisicing. Culpa laboris exercitation magna laborum mollit tempor. Pariatur tempor nisi mollit qui officia reprehenderit eu Lorem minim sint sit exercitation esse duis. Ex eu aliquip ut ea velit aliquip incididunt elit aliquip voluptate sunt. Aute aliquip culpa amet esse dolore et commodo esse. Aliquip aute commodo enim ea anim minim mollit. Non et laborum ipsum nisi excepteur sint.\r\n",
+    "registered": "2014-01-15T12:39:59 -00:00",
+    "latitude": -43.284828,
+    "longitude": -83.203885,
+    "tags": [
+      "non",
+      "voluptate",
+      "dolor",
+      "excepteur",
+      "laboris",
+      "non",
+      "eiusmod"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Winnie Stark"
+      },
+      {
+        "id": 1,
+        "name": "Madeleine Luna"
+      },
+      {
+        "id": 2,
+        "name": "Petty Vance"
+      }
+    ],
+    "greeting": "Hello, John Terrell! You have 4 unread messages.",
+    "favoriteFruit": "banana"
+  },
+  {
+    "_id": "5a466e5f623ed824e6e2561d",
+    "index": 4,
+    "guid": "add4ffc0-06ac-4ff1-b167-7dcf50baae51",
+    "isActive": true,
+    "balance": "$3,816.65",
+    "picture": "http://placehold.it/32x32",
+    "age": 21,
+    "eyeColor": "green",
+    "name": "Chaney Medina",
+    "gender": "male",
+    "company": "PARCOE",
+    "email": "chaneymedina@parcoe.com",
+    "phone": "+1 (971) 482-2204",
+    "address": "307 Waldane Court, Genoa, Nebraska, 9201",
+    "about": "Amet labore eu culpa quis et nisi irure esse tempor dolor voluptate. Magna commodo laborum duis laboris nulla veniam occaecat. Quis reprehenderit cillum do deserunt nulla irure cupidatat do irure anim veniam qui fugiat. Veniam in ut tempor ullamco non sit fugiat eu incididunt ullamco laborum est ipsum. Adipisicing fugiat dolor pariatur est exercitation amet.\r\n",
+    "registered": "2017-07-17T05:08:29 -01:00",
+    "latitude": -25.026567,
+    "longitude": -90.968245,
+    "tags": [
+      "elit",
+      "eu",
+      "in",
+      "fugiat",
+      "commodo",
+      "occaecat",
+      "sit"
+    ],
+    "friends": [
+      {
+        "id": 0,
+        "name": "Mcgee Roy"
+      },
+      {
+        "id": 1,
+        "name": "Baldwin Waters"
+      },
+      {
+        "id": 2,
+        "name": "Marie Neal"
+      }
+    ],
+    "greeting": "Hello, Chaney Medina! You have 10 unread messages.",
+    "favoriteFruit": "strawberry"
+  }
+]

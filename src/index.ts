@@ -41,12 +41,12 @@ export function access(
     if (Array.isArray(data)) {
         if (tokens.length === 1) {
             const next = (<any> data)[token.value]
-            if (next == null) {
-                // Throw token error
-                throw new Error(
-                    `Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`,
-                )
-            }
+            // if (next == null) {
+            //     // Throw token error
+            //     throw new Error(
+            //         `Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`,
+            //     )
+            // }
             return next
         }
         return data.map((a) => access(tokens, a))
@@ -66,12 +66,12 @@ export function access(
                 )
             }
             const index = parseInt(tokens[1].value.slice(1)[0], 10)
-            return access(tokens.splice(2), curPos[index])
+            return access(tokens.slice(2), curPos[index])
         }
         if (curPos == null) {
             throw new Error(`Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`)
         }
-        return curPos.map((a) => access(tokens.splice(1), a))
+        return curPos.map((a) => access(tokens.slice(1), a))
     }
     // This is a hack because typescript does not like the dictonary syntax
     if (tokens.length === 1) {
@@ -82,7 +82,7 @@ export function access(
         const keys = Object.keys(data)
         throw new Error(`Data point ${token.value}(${token.index}) not valid did you mean ${keys}`)
     }
-    return access(tokens.splice(1), curPos)
+    return access(tokens.slice(1), curPos)
 }
 
 export interface Token {

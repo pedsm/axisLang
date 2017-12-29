@@ -28,9 +28,6 @@ function access(axisCode, dataInput) {
     if (Array.isArray(data)) {
         if (tokens.length === 1) {
             var next = data[token.value];
-            if (next == null) {
-                throw new Error("Data point " + token.value + "(" + token.index + ") not valid did you mean \"" + Object.keys(data) + "\"");
-            }
             return next;
         }
         return data.map(function (a) { return access(tokens, a); });
@@ -45,12 +42,12 @@ function access(axisCode, dataInput) {
                 throw new Error("Data point " + token.value + "(" + token.index + ") not valid did you mean \"" + Object.keys(data) + "\"");
             }
             var index = parseInt(tokens[1].value.slice(1)[0], 10);
-            return access(tokens.splice(2), curPos[index]);
+            return access(tokens.slice(2), curPos[index]);
         }
         if (curPos == null) {
             throw new Error("Data point " + token.value + "(" + token.index + ") not valid did you mean \"" + Object.keys(data) + "\"");
         }
-        return curPos.map(function (a) { return access(tokens.splice(1), a); });
+        return curPos.map(function (a) { return access(tokens.slice(1), a); });
     }
     if (tokens.length === 1) {
         return curPos;
@@ -59,7 +56,7 @@ function access(axisCode, dataInput) {
         var keys = Object.keys(data);
         throw new Error("Data point " + token.value + "(" + token.index + ") not valid did you mean " + keys);
     }
-    return access(tokens.splice(1), curPos);
+    return access(tokens.slice(1), curPos);
 }
 exports.access = access;
 function tokenize(axisCode) {

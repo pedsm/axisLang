@@ -65,3 +65,14 @@ describe('index access', () =>  {
        assert.equal(JSON.stringify(axis.parse(code, {data: { name: ['wrong', 'right']}})), '["right"]')
     })
 })
+
+describe('single token access', () => {
+    it("should return a list of 5 ids", () => {
+        const testData = require('./testInput.json')
+        console.log(testData.length)
+        const code = "friends -> name"
+        const value = axis.parse(code, testData)
+        console.log(value)
+        assert.equal(value.length, 5, 'there should be 5 ids')
+    })
+})
