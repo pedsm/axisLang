@@ -1,5 +1,5 @@
 const axis = require("../bin/index.js")
-var assert = require('assert');
+var assert = require('chai').assert;
 console.log(axis.tokenize)
 
 describe('Tokenize', () => {
@@ -13,36 +13,55 @@ describe('Tokenize', () => {
     })
 })
 
-describe('Spec examples', () => {
-    it("should return ['One'] as a result", () => {
-       const code = "data -> name" 
-       assert.equal(JSON.stringify(axis.parse({ data: { name: "One" } }), '["One"]'))
+describe('Access depth', () =>  {
+    it("Strings should not have depth", () => {
+       const code = "data -> name -> [1]" 
+       assert.equal(axis.isDeep("Hello"), false)
     })
-    it("should return ['One'] as a result", () => {
-       const code = "data -> name" 
-       assert.equal(JSON.stringify(axis.parse([{ data: { name: "One" } }]), '["One"]'))
+    it("Numbers should not have depth", () => {
+       const code = "data -> name -> [1]" 
+       assert.equal(axis.isDeep(213141), false)
     })
-    it("should return ['One'] as a result", () => {
-       const code = "data -> name" 
-       assert.equal(JSON.stringify(axis.parse({ data: [{ name: "One" }] }), '["One"]'))
+    it("Booleans should not have depth", () => {
+       const code = "data -> name -> [1]" 
+       assert.equal(axis.isDeep(true), false)
     })
-    it("should return ['One'] as a result", () => {
-       const code = "data -> name" 
-       assert.equal(JSON.stringify(axis.parse([{ data: [{ name: "One" }] }]), '["One"]'))
+    it("Objects should have depth", () => {
+       const code = "data -> name -> [1]" 
+       assert.equal(axis.isDeep({hello: "goodbye"}), true)
     })
-    it("should return ['One'] as a result", () => {
-       const code = "data -> name" 
-       assert.equal(JSON.stringify(axis.parse([{ data: [{ name: ["One"] }] }]), '["One"]'))
+    it("Simple arrays should not have depth", () => {
+       const code = "data -> name -> [1]" 
+       assert.equal(axis.isDeep([1,2,3]), false)
     })
-    it("should return ['One'] as a result", () => {
-       const code = "data -> name" 
-       assert.equal(JSON.stringify(axis.parse([[{ data: [{ name: ["One"] }]}]]), '["One"]'))
+    it("Complex arrays should have depth", () => {
+       const code = "data -> name -> [1]" 
+       assert.equal(axis.isDeep([{}, {}]), true)
     })
 })
 
+describe('Spec examples', () => {
+    const specTests = [
+        { data: { name: "One" } },
+        [{ data: { name: "One" } }],
+        { data: [{ name: "One" }] },
+        [{ data: [{ name: "One" }] }],
+        [{ data: [{ name: ["One"] }]}],
+        [[{ data: [{ name: ["One"] }] }]]
+    ]
+
+    specTests.forEach((testData, i)=> {
+        it("should return ['One'] as a result", () => {
+        const code = "data -> name" 
+        console.log(axis.parse(code, testData))
+        assert(JSON.stringify(axis.parse(code, testData)) === '["One"]', `Result should match spec ${i}`)
+        })
+    });
+})
+
 describe('index access', () =>  {
-    it("should return ['One'] as a result", () => {
+    it("should return ['right'] as a result", () => {
        const code = "data -> name -> [1]" 
-       assert.equal(JSON.stringify(axis.parse({data: { name: ['wrong', 'right']}}), '["right"]'))
+       assert.equal(JSON.stringify(axis.parse(code, {data: { name: ['wrong', 'right']}})), '["right"]')
     })
 })

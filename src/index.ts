@@ -68,9 +68,6 @@
 //         return this.items
 //     }
 // }
-
-// module.exports = Axis
-// let log = a => {}
 export function parse(
     axisCode: string | Token[],
     dataInput: string | object | any[] | undefined | null): any[] | Error {
@@ -94,9 +91,14 @@ export function access(
     if (dataInput == null) {
         return new Error("Data passed is invalid")
     }
+
+    // Return if reach end of the expression
+    if (tokens.length === 0) {
+        return [dataInput]
+    }
     // Parse or not the data
-    const data: object | any[] = typeof(dataInput) === "string" ? JSON.parse(dataInput) : dataInput
     const token = tokens[0]
+    const data: object | any[] = typeof(dataInput) === "string" ? JSON.parse(dataInput) : dataInput
 
     // console.log(`Current token ${token.value}`)
     // console.log(`Current dataPoint ${JSON.stringify(data)}`)
@@ -110,9 +112,14 @@ export function access(
     }
     const curPos = (<any> data)[token.value]
     // Check if the next point to be accesed is an array
-    if (Array.isArray(curPos)){
+    if (Array.isArray(curPos)) {
         if (tokens.length === 1) {
             return curPos
+        }
+        // indentify index accessor
+        if (tokens[1].value.match(/^\[[0-9]*\]$/) !== null) {
+            const index = parseInt(tokens[1].value.slice(1)[0], 10)
+            return access(tokens.splice(2), curPos[index])
         }
         return curPos.map((a) => access(tokens.splice(1), a))
     }
@@ -126,6 +133,26 @@ export function access(
 export interface Token {
     value: string,
     index: number,
+}
+
+// Checks if item has access depth
+export function isDeep(input: any[] | object | null | undefined | any): boolean {
+    if (input == null) {
+        throw new Error("Input undefined or null")
+    }
+    const type = typeof(input)
+    if (type === "string" || type === "number" || type === "boolean") {
+        return false;
+    }
+    if (Array.isArray(input)) {
+        return input
+        .map((a) => Array.isArray(a) || typeof(a) === "object")
+        .reduce((a, b) => a || b , false)
+    }
+    if (type === "object") {
+        return true
+    }
+    return false
 }
 
 export function tokenize(axisCode: string): Token[] {
@@ -144,20 +171,5 @@ export function flatten(arr: any[]): any[] {
         , [])
 }
 
-const test = access("data -> names", {
-    data: {
-        names: [
-            "Hello",
-            "Hello1",
-            "Hello2",
-            "Hello3",
-        ],
-    },
-})
-console.log(test)
-console.log(parse("data -> name", { data: { name: "One" } }))
-console.log(parse("data -> name", [{ data: { name: "One" } }]))
-console.log(parse("data -> name", { data: [{ name: "One" }] }))
-console.log(parse("data -> name", [{ data: [{ name: "One" }] }]))
-console.log(parse("data -> name", [{ data: [{ name: ["One"] }] }]))
-console.log(parse("data -> name", [[{ data: [{ name: ["One"] }] }]]))
+const code = "data -> name -> [1]"
+console.log(parse(code, {data: { name: ["wrong", "right"]}}))

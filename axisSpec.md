@@ -2,14 +2,15 @@
 
 Language spec
 
-## Axis parsing method
+## Axis access method
 
 1. Checks for `undefined` `null` and proprely outuputs error
-2. Checks if there are no tokens left to end
+2. Parse the data into JS Objects
 3. Checks if current point is Object or Array
-    - If Object follow access pattern
-    - If Index follow access pattern
-    - If Array follow recursive pattern
+    - If Object access and pass the parameters down
+    - If Array 
+        - Check for index and deal with it
+        - Else perform normal map access
 4. Return end result ALWAYS as Array
 
 ## Axis Methods
