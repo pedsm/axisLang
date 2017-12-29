@@ -31,24 +31,58 @@ data -> name
 ### Allowed structures
 #### No Arrays
 ```json
-{data: {name: "One"}}
+{
+    "data": {
+        "name": "One"
+    }
+}
 ```
 #### Root is Array
 ```json
-[{data: {name: "One"}}]
+[
+    {
+        "data": {
+            "name": "One"
+        }
+    }
+]
 ```
 
 #### Data is Array
 ```json
-{data: [{name: "One"}]}
+{
+    "data": [
+        {
+            "name": "One"
+        }
+    ]
+}
 ```
 
 #### Data and root is Array
 ```json
-[{data: [{name: "One"}]}]
+[
+    {
+        "data": [
+            {
+                "name": "One"
+            }
+        ]
+    }
+]
 ```
 
 #### Data, root and name is Array
 ```json
-[{data: [{name: ["One"]}]}]
+[
+    {
+        "data": [
+            {
+                "name": [
+                    "One"
+                    ]
+            }
+        ]
+    }
+]
 ```
