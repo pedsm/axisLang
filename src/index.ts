@@ -71,23 +71,35 @@
 
 // module.exports = Axis
 // let log = a => {}
+export default function parse(
+    axisCode: string | Token[],
+    dataInput: string | object | any[] | undefined | null): any[] | Error {
+    const tokens = typeof(axisCode) === "string" ? tokenize(axisCode) : axisCode
+    const result = access(axisCode, dataInput)
+    if (result instanceof Error) {
+        return result
+    }
+    if (Array.isArray(result)) {
+        return flatten(result)
+    }
+    return [result]
+}
 
-export default function access(
+export function access(
     axisCode: string | Token[],
     dataInput: string | object | any[] | undefined | null): any[] | Error {
     const tokens = typeof(axisCode) === "string" ? tokenize(axisCode) : axisCode
 
     // Checks for undefined or null
     if (dataInput == null) {
-        debugger
         return new Error("Data passed is invalid")
     }
     // Parse or not the data
     const data: object | any[] = typeof(dataInput) === "string" ? JSON.parse(dataInput) : dataInput
     const token = tokens[0]
 
-    console.log(`Current token ${token.value}`)
-    console.log(`Current dataPoint ${JSON.stringify(data)}`)
+    // console.log(`Current token ${token.value}`)
+    // console.log(`Current dataPoint ${JSON.stringify(data)}`)
 
     // Check if the whole dataset is an array
     if (Array.isArray(data)) {
@@ -96,7 +108,7 @@ export default function access(
         }
         return data.map((a) => access(tokens, a))
     }
-    const curPos = (<any> data)[token.value] 
+    const curPos = (<any> data)[token.value]
     // Check if the next point to be accesed is an array
     if (Array.isArray(curPos)){
         if (tokens.length === 1) {
@@ -125,18 +137,28 @@ export function tokenize(axisCode: string): Token[] {
         .map((a, i) => ({ value: a, index: i }))
 }
 
-// const test = access("data -> names", {
-//     data: {
-//         names: [
-//             "Hello",
-//             "Hello1",
-//             "Hello2",
-//             "Hello3",
-//         ],
-//     },
-// })
-console.log(access("data -> name", { data: { name: "One" } }))
-console.log(access("data -> name", [{ data: { name: "One" } }]))
-console.log(access("data -> name", { data: [{ name: "One" }] }))
-console.log(access("data -> name", [{ data: [{ name: "One" }] }]))
-console.log(access("data -> name", [{data: [{name: ["One"]}]}]))
+export function flatten(arr: any[]): any[] {
+    return arr
+    .reduce((flat, toFlatten) =>
+        flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten)
+        , [])
+}
+
+const test = access("data -> names", {
+    data: {
+        names: [
+            "Hello",
+            "Hello1",
+            "Hello2",
+            "Hello3",
+        ],
+    },
+})
+console.log(test)
+console.log(parse("data -> name", { data: { name: "One" } }))
+console.log(parse("data -> name", [{ data: { name: "One" } }]))
+console.log(parse("data -> name", { data: [{ name: "One" }] }))
+console.log(parse("data -> name", [{ data: [{ name: "One" }] }]))
+console.log(parse("data -> name", [{ data: [{ name: ["One"] }] }]))
+console.log(parse("data -> name", [[{ data: [{ name: ["One"] }] }]]))
+console.log(parse("data -> name", [[[{ data: [{ name: ["One"] }] }]]])
