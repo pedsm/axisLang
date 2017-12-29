@@ -71,7 +71,7 @@
 
 // module.exports = Axis
 // let log = a => {}
-export default function parse(
+export function parse(
     axisCode: string | Token[],
     dataInput: string | object | any[] | undefined | null): any[] | Error {
     const tokens = typeof(axisCode) === "string" ? tokenize(axisCode) : axisCode
@@ -161,4 +161,3 @@ console.log(parse("data -> name", { data: [{ name: "One" }] }))
 console.log(parse("data -> name", [{ data: [{ name: "One" }] }]))
 console.log(parse("data -> name", [{ data: [{ name: ["One"] }] }]))
 console.log(parse("data -> name", [[{ data: [{ name: ["One"] }] }]]))
-console.log(parse("data -> name", [[[{ data: [{ name: ["One"] }] }]]])
