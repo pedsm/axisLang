@@ -1,6 +1,5 @@
 const axis = require("../bin/index.js")
 var assert = require('chai').assert;
-console.log(axis.tokenize)
 
 describe('Tokenize', () => {
     it('should return 3 tokens', () => {
@@ -53,7 +52,6 @@ describe('Spec examples', () => {
     specTests.forEach((testData, i)=> {
         it("should return ['One'] as a result", () => {
         const code = "data -> name" 
-        console.log(axis.parse(code, testData))
         assert(JSON.stringify(axis.parse(code, testData)) === '["One"]', `Result should match spec ${i}`)
         })
     });
@@ -69,10 +67,14 @@ describe('index access', () =>  {
 describe('single token access', () => {
     it("should return a list of 5 ids", () => {
         const testData = require('./testInput.json')
-        console.log(testData.length)
         const code = "_id"
         const value = axis.parse(code, testData)
-        console.log(value)
         assert.equal(value.length, 5, 'there should be 5 ids')
+    })
+    it("should return a list of 15 friends", () => {
+        const testData = require('./testInput.json')
+        const code = "friends"
+        const value = axis.parse(code, testData)
+        assert.equal(value.length, 15, 'there should be 15 friends')
     })
 })
