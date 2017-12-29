@@ -7,7 +7,7 @@ A data-driven syntax
 
 ## What it does
 
-Axis allows for quick access of data in JSON files or JavaScript data structures, ideal for APIs. Axis is designed to be a self adapting syntax. This means that Axis will understand the data that it is given and try to extract content by using runtime checking.
+Axis allows for quick access of data in JSON files or JavaScript data structures, ideal for APIs. Axis queries require the least possible amount of writing in order to access any JSON data
 
 
 ## Examples
