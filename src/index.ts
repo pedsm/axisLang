@@ -39,16 +39,16 @@ export function access(
 
     // Check if the whole dataset is an array
     if (Array.isArray(data)) {
-        if (tokens.length === 1) {
-            const next = (<any> data)[token.value]
-            // if (next == null) {
-            //     // Throw token error
-            //     throw new Error(
-            //         `Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`,
-            //     )
-            // }
-            return next
-        }
+        // if (tokens.length === 1) {
+        //     const next = (<any> data)[token.value]
+        //     // if (next == null) {
+        //     //     // Throw token error
+        //     //     throw new Error(
+        //     //         `Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`,
+        //     //     )
+        //     // }
+        //     return next
+        // }
         return data.map((a) => access(tokens, a))
     }
     const curPos = (<any> data)[token.value]

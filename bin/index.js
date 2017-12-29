@@ -26,10 +26,6 @@ function access(axisCode, dataInput) {
         throw new Error("Data could not be parsed, are you sure there is a " + token.value + "(" + token.index + ") in \"" + dataInput);
     }
     if (Array.isArray(data)) {
-        if (tokens.length === 1) {
-            var next = data[token.value];
-            return next;
-        }
         return data.map(function (a) { return access(tokens, a); });
     }
     var curPos = data[token.value];
