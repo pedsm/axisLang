@@ -11,6 +11,9 @@ Language spec
 3. Axis strives for ambiguity
     - An axis expression should ideally work for many types of inputs 
     - For example a JSON API that returns a JSON object or multiple JSON objects should ideally be able to be handled by the same axis expression
+4. Axis errors must be beutifully handled
+    - Axis should be smart enough to understand its errors and inform them to the developer and not simply break the program
+    - All errors must contain suggestions such as possible typo corrections.
 
 ## Axis access method
 
