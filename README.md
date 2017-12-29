@@ -20,6 +20,7 @@ data -> attributes -> title
 
 This expression will extract the title inside of attributes which is inside of data. Because Axis is designed to be ambiguous, attributes could be an array of objects and Axis will still work as it will identify the content that is parsing.
 
+[Axis Language specs](https://github.com/pedsm/axisLang/blob/master/axisSpec.md) for more examples
 ### How to use it
 
 Axis is used through a single method, simply provide an axis epression and a piece of data JSON string or Javascript object in order to query it
@@ -28,12 +29,11 @@ The following code will print all friends' names as an array
 
 ```javascript
 const axis = require('axislang')
-const data = require('./input.json')
+const data = require('./input.json') // input.json link below
 
-const allFriends = axis.parse('friends -> name', data)
-console.log(allFriends) // Returns
+const allFriends = axis.parse('friends -> name', data) // Returns
 // [ 'Britney Hensley', 'Annmarie Ryan', 'Hess Decker', 'Bolton Shaffer', 'Ruth Caldwell', 'Medina Kline', 'Tami Duncan', 'Lawrence Hooper', 'Esperanza Hickman', 'Winnie Stark', 'Madeleine Luna', 'Petty Vance', 'Mcgee Roy', 'Baldwin Waters', 'Marie Neal' ]
-
+console.log(allFriends) 
 ```
 Look at [input.json](https://github.com/pedsm/axisLang/blob/master/src/testInput.json) 
 
