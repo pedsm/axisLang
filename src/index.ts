@@ -125,6 +125,3 @@ export function flatten(arr: any[]): any[] {
         flat.concat(Array.isArray(toFlatten) ? flatten(toFlatten) : toFlatten)
         , [])
 }
-
-const code = "data -> name -> hello"
-console.log(parse(code, {data: { name: ["wrong", "right"]}}))
