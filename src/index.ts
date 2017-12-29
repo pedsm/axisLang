@@ -30,7 +30,7 @@ export function access(
         data = typeof(dataInput) === "string" ? JSON.parse(dataInput) : dataInput
     } catch (e) {
         throw new Error(
-            `Data could not be parsed, are you sure there is a ${token.value}(${token.index}) in "${dataInput}`
+            `Data could not be parsed, are you sure there is a ${token.value}(${token.index}) in "${dataInput}`,
         )
     }
 
@@ -44,7 +44,7 @@ export function access(
             if (next == null) {
                 // Throw token error
                 throw new Error(
-                    `Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`
+                    `Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`,
                 )
             }
             return next
@@ -57,12 +57,12 @@ export function access(
         if (tokens.length === 1) {
             return curPos
         }
-        // indentify index accessor
+        // indentify index accessor if there is one
         if (tokens[1].value.match(/^\[[0-9]*\]$/) !== null) {
             // Throw token error
             if (curPos == null) {
                 throw new Error(
-                    `Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`
+                    `Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`,
                 )
             }
             const index = parseInt(tokens[1].value.slice(1)[0], 10)
@@ -91,24 +91,24 @@ export interface Token {
 }
 
 // Checks if item has access depth
-export function isDeep(input: any[] | object | null | undefined | any): boolean {
-    if (input == null) {
-        throw new Error("Input undefined or null")
-    }
-    const type = typeof(input)
-    if (type === "string" || type === "number" || type === "boolean") {
-        return false;
-    }
-    if (Array.isArray(input)) {
-        return input
-        .map((a) => Array.isArray(a) || typeof(a) === "object")
-        .reduce((a, b) => a || b , false)
-    }
-    if (type === "object") {
-        return true
-    }
-    return false
-}
+// export function isDeep(input: any[] | object | null | undefined | any): boolean {
+//     if (input == null) {
+//         throw new Error("Input undefined or null")
+//     }
+//     const type = typeof(input)
+//     if (type === "string" || type === "number" || type === "boolean") {
+//         return false;
+//     }
+//     if (Array.isArray(input)) {
+//         return input
+//         .map((a) => Array.isArray(a) || typeof(a) === "object")
+//         .reduce((a, b) => a || b , false)
+//     }
+//     if (type === "object") {
+//         return true
+//     }
+//     return false
+// }
 
 export function tokenize(axisCode: string): Token[] {
     return axisCode
