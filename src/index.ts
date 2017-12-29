@@ -89,7 +89,7 @@ export function access(
 
     // Checks for undefined or null
     if (dataInput == null) {
-        return new Error("Data passed is invalid")
+        throw new Error("Data passed is invalid, are you sure you filled in the second argument?")
     }
 
     // Return if reach end of the expression
@@ -98,7 +98,12 @@ export function access(
     }
     // Parse or not the data
     const token = tokens[0]
-    const data: object | any[] = typeof(dataInput) === "string" ? JSON.parse(dataInput) : dataInput
+    let data: object | any[]
+    try {
+        data = typeof(dataInput) === "string" ? JSON.parse(dataInput) : dataInput
+    } catch (e) {
+        throw new Error(`Data could not be parsed, are you sure there is a ${token.value}(${token.index}) in "${dataInput}`)
+    }
 
     // console.log(`Current token ${token.value}`)
     // console.log(`Current dataPoint ${JSON.stringify(data)}`)
@@ -106,7 +111,12 @@ export function access(
     // Check if the whole dataset is an array
     if (Array.isArray(data)) {
         if (tokens.length === 1) {
-            return (<any> data)[token.value]
+            const next = (<any> data)[token.value]
+            if (next == null) {
+                // Throw token error
+                throw new Error(`Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`)
+            }
+            return next
         }
         return data.map((a) => access(tokens, a))
     }
@@ -118,14 +128,28 @@ export function access(
         }
         // indentify index accessor
         if (tokens[1].value.match(/^\[[0-9]*\]$/) !== null) {
+            // Throw token error
+            if (curPos == null) {
+                throw new Error(
+                    `Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`
+                )
+            }
             const index = parseInt(tokens[1].value.slice(1)[0], 10)
             return access(tokens.splice(2), curPos[index])
+        }
+        if (curPos == null) {
+            throw new Error(`Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`)
         }
         return curPos.map((a) => access(tokens.splice(1), a))
     }
     // This is a hack because typescript does not like the dictonary syntax
     if (tokens.length === 1) {
         return curPos
+    }
+    if (curPos == null) {
+        // Throw token error
+        const keys = Object.keys(data)
+        throw new Error(`Data point ${token.value}(${token.index}) not valid did you mean ${keys}`)
     }
     return access(tokens.splice(1), curPos)
 }
@@ -171,5 +195,5 @@ export function flatten(arr: any[]): any[] {
         , [])
 }
 
-const code = "data -> name -> [1]"
+const code = "data -> name -> hello"
 console.log(parse(code, {data: { name: ["wrong", "right"]}}))
