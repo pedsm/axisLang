@@ -52,6 +52,11 @@ export function access(
         return data.map((a) => access(tokens, a))
     }
     const curPos = (<any> data)[token.value]
+    if (curPos == null) {
+        throw new Error(
+            `Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`,
+        )
+    }
     // Check if the next point to be accesed is an array
     if (Array.isArray(curPos)) {
         if (tokens.length === 1) {
@@ -59,12 +64,6 @@ export function access(
         }
         // indentify index accessor if there is one
         if (tokens[1].value.match(/^\[[0-9]*\]$/) !== null) {
-            // Throw token error
-            if (curPos == null) {
-                throw new Error(
-                    `Data point ${token.value}(${token.index}) not valid did you mean "${Object.keys(data)}"`,
-                )
-            }
             const index = parseInt(tokens[1].value.slice(1)[0], 10)
             return access(tokens.slice(2), curPos[index])
         }
@@ -76,11 +75,6 @@ export function access(
     // This is a hack because typescript does not like the dictonary syntax
     if (tokens.length === 1) {
         return curPos
-    }
-    if (curPos == null) {
-        // Throw token error
-        const keys = Object.keys(data)
-        throw new Error(`Data point ${token.value}(${token.index}) not valid did you mean ${keys}`)
     }
     return access(tokens.slice(1), curPos)
 }

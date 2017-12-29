@@ -1,6 +1,6 @@
 {
   "name": "axislang",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "The official Axis Parser",
   "main": "bin/index.js",
   "scripts": {

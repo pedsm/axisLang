@@ -29,14 +29,14 @@ function access(axisCode, dataInput) {
         return data.map(function (a) { return access(tokens, a); });
     }
     var curPos = data[token.value];
+    if (curPos == null) {
+        throw new Error("Data point " + token.value + "(" + token.index + ") not valid did you mean \"" + Object.keys(data) + "\"");
+    }
     if (Array.isArray(curPos)) {
         if (tokens.length === 1) {
             return curPos;
         }
         if (tokens[1].value.match(/^\[[0-9]*\]$/) !== null) {
-            if (curPos == null) {
-                throw new Error("Data point " + token.value + "(" + token.index + ") not valid did you mean \"" + Object.keys(data) + "\"");
-            }
             var index = parseInt(tokens[1].value.slice(1)[0], 10);
             return access(tokens.slice(2), curPos[index]);
         }
@@ -47,10 +47,6 @@ function access(axisCode, dataInput) {
     }
     if (tokens.length === 1) {
         return curPos;
-    }
-    if (curPos == null) {
-        var keys = Object.keys(data);
-        throw new Error("Data point " + token.value + "(" + token.index + ") not valid did you mean " + keys);
     }
     return access(tokens.slice(1), curPos);
 }
