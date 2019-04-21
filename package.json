@@ -18,7 +18,7 @@
     "url": "https://github.com/pedsm/axisLang/issues"
   },
   "homepage": "https://github.com/pedsm/axisLang#readme",
-  "dependencies": { },
+  "dependencies": {},
   "devDependencies": {
     "@types/chai": "^4.0.10",
     "chai": "^4.1.2",
